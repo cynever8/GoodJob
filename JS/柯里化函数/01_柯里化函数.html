@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    //-------------------------1-------------------------
+    // 计算每个月花了多少钱
+    var monthlyCost = 0;
+    var cost = function (money) {
+        monthlyCost += money;
+    };
+
+    cost(100); // 第 1 天开销 
+    cost(100); // 第 2 天开销 
+    cost(200); // 第 3 天开销 
+    //...
+    cost(200); // 第 30 天开销 
+
+    console.log(monthlyCost); // 第 1 天开销 
+
+    /* 
+        每天结束后都会记录并计算到今天为止花掉的钱。
+        但其实并不太关心每天花掉了多少钱，
+        而只想知道到月底的时候会花掉多少钱。
+        也就是说，实际上只需要在月底计算一次
+    */
+
+    //----------------------------2.优化------------------------
+    /* 
+        如果在每个月的前29天，都只是保存好当天的开销，
+        直到最后一天才进行求值计算，
+        这样就达到了我们的要求，代码如下
+    */
+    var cost2 = (function () {
+        var args = [];
+        return function () {
+            // 如果没有参数,则计算args数组中的和
+            if (arguments.length === 0) {
+                var money = 0;
+                for (var i = 0, l = args.length; i < l; i++) {
+                    money += args[i];
+                }
+                return money;
+                //如果有参数,则只能是将数据传到args数组中
+            } else {
+                [].push.apply(args, arguments);
+            }
+        }
+    })();
+    cost2(100); //未真正求职
+    cost2(200); //未真正求职
+    cost2(100); //未真正求职
+    console.log(cost2()); //求值
+
+    // ----------------3.可传参函数--------------------
+    /* 
+        实际上，柯里化函数不仅可以接收要柯里化的函数作为参数，
+        也可以接收一些必要参数，
+        下面是函数柯里化(currying)的改进代码
+    */
+    var currying = function (fn){
+        var args = [];
+        // 存储传到curring函数中的除了fn之外的其他函数,并存储到args函数中
+        args = args.concat([].slice.call(arguments,1));
+        return function(){
+            if(arguments.length === 0){
+                
+            }
+        }
+    }
+
+</script>

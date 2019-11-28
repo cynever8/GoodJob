@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    push() 
+        方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。 
+    语法
+        arr.push(element1, ..., elementN)
+
+    参数
+        elementN
+            被添加到数组末尾的元素。
+
+    返回值
+        当调用该方法时，新的 length 属性值将被返回。
+        
+-->
+</body>
+
+</html>
+<script>
+    // -------------------😀1.添加元素到数组--------------------
+    let arrayList = [1, 2, 23, 3, 4, 5];
+    let one = "你好!"
+    // arrayList.push(one);
+    let newarrayList = arrayList.push(one);
+    // 返回数组内容
+    // console.log("F: arrayList", arrayList)// (7) [1, 2, 23, 3, 4, 5, "你好!"]
+    // 返回数组长度
+    // console.log("F: newarrayList", newarrayList)// 7
+
+
+    //----------------------😀2.合并两个数组---------------------
+    let array1 = [1, 2, 3];
+    let array2 = ["a", "b", "c", "d"];
+    Array.prototype.push.apply(array1, array2);
+    // console.log("F: array1", array1)
+    // console.log("F: array2", array2)
+    // console.log("F: content", content)
+
+    //----------------------😂3. 像数组一样使用对象---------------------
+    /* 
+        如上所述，push 是特意设计为通用的，
+        我们可以使用它来获得便利。
+        正如下面的例子所示，Array.prototype.push 可以在一个对象上工作。
+        注意，我们没有创建一个数组来存储对象的集合。 
+        相反，我们将该集合存储在对象本身上，
+        并使用在 Array.prototype.push 上使用的 call 来调用该方法，
+        使其认为我们正在处理数组，而它只是像平常一样运作，
+        这要感谢 JavaScript 允许我们建立任意的执行上下文。
+    */
+
+    var obj = {
+        length: 0,
+        addElem: function addElem(elem) {
+            // 每次添加一个元素时,obj.length长度自动递增
+            let arrayList = [];
+            arrayList.push.call(this, elem);
+        }
+    }
+    // 添加空对象用来举例
+    obj.addElem({
+        name: "Leon",
+        age: 10
+    });
+    obj.addElem({
+        name: "Nina",
+        age: 20
+    });
+
+
+    // 尽管 obj 不是数组，但是 push 方法成功地使 obj 的 length 属性增长了，就像我们处理一个实际的数组一样。
+    console.log(obj);
+    console.log(obj.length); // 2
+
+    //=====================🙃下面的是自己随便写的不是push的重点====================
+
+    //遍历obj
+    // 1. 使用循环
+    for (var i = 0; i < obj.length; i++) {
+        let objName = obj[i].name;
+        // console.log(objName);
+    }
+    // 2. 使用对象方法
+    let objList = [];
+    // 2.1
+    // objList = Object.keys(obj).forEach(function (key) {
+    //     console.log(key,obj[key]);
+    // })
+    // 2.2
+
+
+    console.log(objList);
+</script>

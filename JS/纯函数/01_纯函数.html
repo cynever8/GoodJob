@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    /* 
+    在非纯函数changeAge中，将对象person的age更新并返回。原始的leon对象也被影响，age更新为25。
+    */
+    function changeAge(person){
+        person.age = 25;
+        return person;
+    };
+    
+    var leon = {
+        name:"leon",
+        age:22
+    };
+
+    var changeLeon = changeAge(leon);
+    console.log(leon);//{name: "leon", age: 25}
+    console.log(changeLeon);//{name: "leon", age: 25}
+
+
+    // 实现一个存数组
+    function changeName(person){
+        var newPersonName = JSON.parse(JSON.stringify(person));
+        newPersionObj.age = 25;
+        return newPersionObj;
+    }
+    var Nina = {
+        name:"Nina",
+        age:21
+    }
+    var Nina = changeName(Nina);
+    
+</script>

@@ -1,0 +1,208 @@
+/*css初始化*/
+/*1.清除默认样式*/
+/* 全局 */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+header,
+nav,
+section,
+article,
+aside,
+hgroup,
+figure,
+main,
+footer {
+	display: block;
+}
+
+/* 表格 */
+ol,
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* 图片 */
+fieldset,
+img {
+	/*清除图片在ie6下的默认边框*/
+	border: 0;
+	/*清除图片底部的缝隙*/
+	vertical-align: middle;
+}
+
+/* 搜索 */
+input,
+button,
+select,
+textarea {
+	/*清除默认边框*/
+	border: 0;
+	/*清除默认的轮廓线*/
+	outline: 0;
+}
+input {
+	line-height: normal
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none
+}
+textarea {
+	resize: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong {
+	font-weight: 400;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+/*2.常用样式*/
+body {
+	font: 14px arial, 'microsoft yahei';
+	color: #000;
+}
+
+/* 版心 */
+.w {
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+a {
+	color: #666;
+}
+
+/* a:hover {
+	color: #E50011;
+} */
+
+/* .red {
+	color: #E50011;
+} */
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clearfix:after {
+	content: '';
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+
+/* 兼容IE 6, 7 */
+.clearfix {
+	*zoom: 1;
+}
+
+.f12 {
+	font-size: 12px;
+}
+
+.f14 {
+	font-size: 14px;
+}
+
+.f16 {
+	font-size: 16px;
+}
+
+.tc {
+	text-align: center;
+}
+.ellipsis {
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* 单行不换行 */
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+}
+/* 两行不换行 */
+.ellipsis-2 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+/* 首行缩进 */
+.indent {
+    text-indent: -9999px;
+}
+
+/* 溢出隐藏 */
+.oh{
+	overflow: hidden;
+}
+.hand {
+    cursor: pointer;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /* 异步代码转换为同步代码 */
+
+        function fn() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    console.log("123");
+                    resolve({
+                        a: 1
+                    });
+                }, 1000)
+            })
+        }
+
+        // user.save().then
+        /* 
+            正常情况下去.then中data的值
+        */
+        fn().then((data) => {
+            console.log(data);
+        })
+
+        /* 异步的最终解决方案await  */
+        let fn1 = async function () {
+            /* 
+                await等待异步的执行 
+                可以拿到promise中.then中data的值
+                返回值必须是promise
+            */
+
+            let data = await fn();
+            console.log(data);
+            console.log("456");
+        }
+        fn1();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

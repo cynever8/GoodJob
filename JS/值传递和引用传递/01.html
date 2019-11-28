@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        值传参针对基本类型，引用传参针对引用类型，传参可以理解为复制变量值。
+        基本类型复制后俩个变量完全独立，之后任何一方改变都不会影响另一方；
+        引用类型复制的是引用（即指针），之后的任何一方改变都会映射到另一方。
+
+        我们可以把ECMAScript函数的参数想象成局部变量。
+        在向参数传递基本类型的值时，被传递的值被复制给一个局部变量（即命名参数，或者用ECMAScript的概念来说，就是arguments对象中的一个元素）。
+        在向参数传递引用类型时，会把这个值在内存中的地址（指针）复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部。
+     -->
+</body>
+</html>
+<script>
+    // 值传递
+    function addTen (num){
+        num+=10;
+        return num;
+    }
+    var count = 20;
+    var result = addTen(count);
+    console.log(count);
+    console.log(result);
+
+    // 引用传递---------------------------------------------
+    function setName(obj){
+        obj.name = "Leon";
+    }
+    var person = new Object();
+    setName(person); //obj = person
+    console.log(person.name); 
+
+    function setName2(obj){
+        obj.name = "Nina";
+
+        // 改变obj的指向,此时obj指向一个新的内存地址,不在和perso指向同一个
+        obj = new Object();
+        obj.name = "Google";
+        console.log(obj.name);
+
+    }
+
+    var person = new Object();
+    setName2 (person);
+    console.log(person.name)
+
+    // 引用传递2---------------------------------------------------
+    var arr = [];
+    arr.push(1);
+    console.log(" This: arr", arr);
+
+    var reference = [1];
+    var refCopy = reference;
+    console.log(reference,refCopy);// [1], [1]
+
+    // reference和refCopy指向同一个数组。 如果我们更新reference，refCopy也会受到影响。
+    reference.push(2)
+    console.log(reference,refCopy)// [1,2] ,[1,2]
+
+    // 引入重新赋值-------------------------------------------
+    
+    // 如果我们将一个已经赋值的变量重新赋值，那么它将包含新的数据或则引用地址。
+    // 报错
+
+    /* 
+        var name1 = {first:'Leon'};
+        name1 = { second = "Nina"};
+        console.log(" This: name1", name1); 
+    */
+
+    // name从指向第一个对象变为指向第二个对象。
+    /* 
+        如果一个对象没有被任何变量指向，
+        就如第一个对象(地址为#001)，
+        JavaScript引擎的垃圾回收机制会将该对象销毁并释放内存。
+    */
+</script>

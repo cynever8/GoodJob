@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    // ----------------1. 使用 split()-----------------
+    function splitString(stringToSplit, separator) {
+        var arrayOfStrings = stringToSplit.split(separator);
+
+        // console.log('The original string is:"' + stringToSplit + '"');
+        // console.log('The separator is:"' + separator + '"');
+        // console.log("The array has " + arrayOfStrings.length + " elements:");
+
+        for (var i = 0; i < arrayOfStrings.length; i++) {
+            // console.log(arrayOfStrings[i] + "/");
+        }
+    }
+
+    var description = "This is my world !";
+    var name = "Master , Leon , Nina , Teacher , Fines";
+
+    var space = " ";
+    var comma = ",";
+
+    splitString(description, space);
+    splitString(description);
+    splitString(name, comma);
+
+
+    // ----------- 2. 移出字符串中的空格-----------------
+    /* 
+        split() 方法会查找“0 或多个空白符接着的分号，
+        再接着 0 或多个空白符”模式的字符串，
+        找到后，就将空白符从字符串中移除，nameList 是 split 的返回数组。 
+    */
+    var names = "Nike Robin; Leon Case; Makes Tile;"
+    // console.log("F: names", names)
+
+    var re = /\s*(?:;|$)\s*/;
+    var nameList = names.split(re);
+
+    // console.log(nameList);
+
+    // ------------- 3. 限制返回值中分割元素数量-------------
+    // split 查找字符串中的 0 或多个空格，并返回找到的前 3 个分割元素（splits）。
+    var myString = "Hello World. How are you doing?";
+    var splits = myString.split(" ",3);
+    
+    // console.log("F: splits", splits);
+
+    //--------- 4. 靠正则来分割使结果中包含分隔块---------------
+    // 如果 separator 包含捕获括号（capturing parentheses），则其匹配结果将会包含在返回的数组中。
+    var TextHaveNumber = "I have 1 apple. If I have 3 pen.";
+    var splitNumber = TextHaveNumber.split(/(\d)/);
+    // console.log("F: splitNumber", splitNumber)
+
+    //----------5. 使用一个数组来作为分隔符--------------------
+    const NewString = 'this|is|a|pen';
+    // 这里面是一个数组, 这个基本看不出来区别 , 是不是数组都一样
+    // const splitsArray = NewString.split("|");
+    const splitsArray = NewString.split(["|"]);
+    // console.log("F: splitsArray", splitsArray);
+
+    const SomeWord = 'ca,ba,da,bba,bd,bff';
+    const splitsArray2 = SomeWord.split(["a","b"]);
+    // console.log("F: splitsArray2", splitsArray2)
+
+    // --------6. 用split()来颠倒字符串顺序 ----------------------
+    // 😀注意这并非一种很健壮的逆转字符串的方法
+    const back = "abcd1234 Leon ? !!!";
+    const nowBack = back.split("").reverse().join("")
+    console.log(nowBack)
+
+
+
+
+
+
+
+
+
+
+
+</script>

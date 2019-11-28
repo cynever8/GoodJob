@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <style>
+
+        .box1{
+            width: 200px;
+            height: 150px;
+            line-height: 150px;
+            background-color: #ddd;
+            text-align: center;
+        }
+        .box2{
+            width: 200px;
+            height: 150px;
+            background-color: pink;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        }
+
+        .box3{
+            width: 200px;
+            height: 150px;
+            position: relative;
+            background-color:red;
+        }
+        .box3 p {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <p>利用行高居中居中</p>
+    </div>
+
+    <div class="box2">
+        <p>利用弹性盒居中</p>
+    </div>
+
+    <div class="box3">
+        <p>利用定位居中</p>
+    </div>
+</body>
+</html>

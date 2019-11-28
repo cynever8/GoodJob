@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+       
+    -->
+</body>
+
+</html>
+
+<script>
+    // 创建一个map对象
+    var selectMap = new Map();
+    console.log(selectMap);
+    // 遍历
+    selectMap.forEach(function (value, key, map) {});
+    // 长度
+    selectMap.size;
+    // 删除
+    // selectMap.delete(key.value);
+    //新增
+    // selectMap.set(key,value);
+
+    // 1. 求数组中每个元素的平方根
+    // map不会改变原有数组的值
+    var numbers = [1, 4, 9];
+    var roots = numbers.map(Math.sqrt); //求平方根
+    console.log(numbers); //(3) [1, 4, 9]
+    console.log(roots); //(3) [1, 2, 3]
+
+    // 2. 使用 map 重新格式化数组中的对象
+    // 2.1 以下代码使用一个包含对象的数组来重新创建一个格式化后的数组。
+    var kvArray = [{
+            key: 1,
+            value: 10
+        },
+        {
+            key: 2,
+            value: 20
+        },
+        {
+            key: 3,
+            value: 30
+        }
+    ];
+
+    var reformattedArray = kvArray.map(function (obj) {
+        var rObj = {};
+        rObj[obj.key] = obj.value;
+        return rObj;
+    });
+
+    console.log(reformattedArray); // 0: {1: 10} 1: {2: 20} 2: {3: 30}
+
+    //2.2
+    list = [{
+        "goodsNum": 583816,
+        "order_num": 0,
+        "sales": "扬子",
+        "volume": 0,
+        "weight": 0
+    }, {
+        "goodsNum": 26484,
+        "order_num": 0,
+        "sales": "北京",
+        "volume": 0,
+        "weight": 0
+    }, {
+        "goodsNum": 24403,
+        "order_num": 0,
+        "sales": "上海",
+        "volume": 0,
+        "weight": 0
+    }];
+    let newarr = list.map(obj => {
+        return obj.sales;
+    })
+    console.log(newarr); // ["扬子","北京","上海"]
+
+    // 3. 使用一个包含一个参数的函数来mapping(构建)一个数字数组
+    /* 
+        下面的代码表示了当函数需要一个参数时map的工作方式。
+        当map循环遍历原始数组时，这个参数会自动被分配成数组中对应的每个元素。
+    */
+    var numbers = [1, 4, 9];
+    //    普通函数
+    //    var doubles = numbers.map(function(num){
+    //     return num *2;
+    //    });
+
+    //    箭头函数
+    var doubles = numbers.map(num => {
+        return num * 3;
+    });
+    console.log(doubles);
+
+    // 同理
+    // const array = [1, 2, 3, 4, 5];
+    // // 传递一个函数的映射
+    // const map = array.map(x => x * 2);
+    // console.log(map); //(5) [2, 4, 6, 8, 10]
+
+    // 4. 一般的map 方法
+    /* 
+        下面的例子演示如何在一个 String 上使用 map 方法
+        获取字符串中每个字符所对应的 ASCII 码组成的数组：
+    */
+    var mapText = Array.prototype.map;
+    console.log(mapText); // ƒ map() { [native code] }
+    var ASCIINumber = mapText.call("Hello", (x) => {
+        // this指向 winodow
+        return x.charCodeAt(0);
+    })
+    console.log(ASCIINumber); // (5) [72, 101, 108, 108, 111]
+
+
+    // 5. querySelectorAll 应用
+    /* 
+        下面代码展示了如何去遍历用 querySelectorAll 得到的动态对象集合。
+        在这里，我们获得了文档里所有选中的选项，并将其打印：
+    */
+    var elems = document.querySelectorAll('select option:checked');
+    var values = Array.prototype.map.call(elems, function (obj) {
+        return obj.value;
+    })
+    console.log(" This: values", values);
+
+    // 6. 使用技巧 
+    /* 
+         通常情况下，map 方法中的 callback 函数只需要接受一个参数，
+         就是正在被遍历的数组元素本身。
+         但这并不意味着 map 只给 callback 传了一个参数。
+         这个思维惯性可能会让我们犯一个很容易犯的错误。
+    */
+    // 考虑下例
+
+    console.log(["1", "2", "3"].map(parseInt)); // (3) [1, NaN, NaN]
+    /* 
+    首先根据我对两个函数用法的了解，
+    猜测是由于parseInt(string, radix) 的参数radix必须介于2~36之间，
+    而且字符串string中的数字不能大于radix才能正确返回数字结果值。
+
+    正是由于map的回调函数的参数index索引值作了parseInt的基数radix，
+    导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN。
+    */
+
+    // 解决方案
+    // 1. 重新定义parseInt函数
+    function parseInt(str, radix) {
+        return str + '-' + radix;
+    };
+    var a = ["1", "2", "3"];
+    console.log(a.map(parseInt));
+
+    // 2. 
+    function returnInt(element) {
+        return parseInt(element, 10);
+    }
+
+    console.log(['1', '2', '3'].map(returnInt)); // [1, 2, 3]
+    // Actual result is an array of numbers (as expected)
+
+    // Same as above, but using the concise arrow function syntax
+    ['1', '2', '3'].map(str => parseInt(str));
+
+    // A simpler way to achieve the above, while avoiding the "gotcha":
+    ['1', '2', '3'].map(Number); // [1, 2, 3]
+
+    // But unlike parseInt(), Number() will also return a float or (resolved) exponential notation:
+    ['1.1', '2.2e2', '3e300'].map(Number); // [1.1, 220, 3e+300]
+    // For comparison, if we use parseInt() on the array above:
+    ['1.1', '2.2e2', '3e300'].map(str => parseInt(str)); // [1, 2, 3]
+</script>

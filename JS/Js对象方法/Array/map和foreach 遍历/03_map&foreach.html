@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // foreach不会改变原始数组
+    let arr = ["a", "b", "c"];
+    arr.forEach((letter) => {
+        console.log(letter); //a  b  c
+    })
+    console.log(arr); //(3) ["a", "b", "c"]
+
+    // map 会改变原始数组的值
+    let arr2 = [1, 2, 3, 4, 5];
+    
+    //???????????😡
+    // let arr3 = arr2.map((num) => {
+    //     num * 2;
+    // }).filter((num) => {
+    //     num > 5;
+    // })
+    // console.log(arr3);// []
+
+    // 我们首先使用 map 将每一个元素乘以 2，然后紧接着筛选出那些大于 5 的元素。最终结果赋值给arr2。
+    let arr4 = arr2.map(num => num * 2).filter(num => num > 5);
+    console.log("F: arr4", arr4) // [6, 8, 10]
+
+    
+</script>

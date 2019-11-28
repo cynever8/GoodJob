@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    
+    var arr = [1,2,3,4,5];
+    // 每次都会删除一个
+    // 会改变原数组 , 所以它不是一个纯函数
+    arr.splice(0,1);
+    arr.splice(0,1);
+    arr.splice(0,1);
+    arr.splice(0,1);
+    console.log(arr);
+
+    //不会改变原数组 , 是一个纯函数
+    var arr2 = [1,2,3,4,5];
+    arr2.slice(1);
+    console.log(arr2.slice(1));
+    console.log(arr2);
+</script>

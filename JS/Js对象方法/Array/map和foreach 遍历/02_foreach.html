@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<script>
+    //-------------------😀没有未初始化值的操作(稀疏数组)--------------------
+    const arraySparse = [1, 3, , 7];
+    let numCallbackRuns = 0;
+
+    arraySparse.forEach((element) => {
+        console.log(element);
+        numCallbackRuns++;
+    });
+    console.log("F: numCallbackRuns", numCallbackRuns);
+
+    // -----------------😀for 循环转换为 forEach--------------------
+    const items = ['Leon', 'Nina', 'Reader'];
+    const copy = [];
+
+    //before
+    // for(var i =0;i<items.length;i++){
+    //     copy.push(items[i]);
+    // }
+    // after
+    items.forEach((items) => {
+        copy.push(items);
+    })
+    console.log("F: copy", copy);
+
+</script>

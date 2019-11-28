@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        join() 方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。
+        如果数组只有一个项目，那么将返回该项目而不使用分隔符。
+     -->
+</body>
+
+</html>
+
+<script>
+    const elements = [1, 2, 3, 4];
+    const elements2 = ["1", "2", "3", "5"];
+    const elements3 = [{
+        name: "leon",
+        age: 10
+    }];
+
+    console.log(elements.join(''));//1234
+    console.log(elements2.join(","));//1235
+    console.log(elements3.join(""));//[object Object]
+</script>

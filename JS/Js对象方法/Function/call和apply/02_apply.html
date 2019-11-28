@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+        apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。
+        注意：call()方法的作用和 apply() 方法类似，
+        区别就是call()方法接受的是参数列表，而apply()方法接受的是一个参数数组。
+
+        语法
+
+        func.apply(thisArg, [argsArray])
+
+        参数
+
+        thisArg
+            可选的。
+            在 func 函数运行时使用的 this 值。
+            请注意，this可能不是该方法看到的实际值：
+            如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。
+        argsArray
+            可选的。
+            一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 func 函数。
+            如果该参数的值为 null 或  undefined，则表示不需要传入任何参数。
+            从ECMAScript 5 开始可以使用类数组对象。
+     -->
+</body>
+
+</html>
+
+<script>
+    // 一 , 用 apply将数组添加到另一个数组
+    /* 
+        1. push 不能将两个数组合并
+        2. concat 可以合并数组,但是并不会附加到原有数组中
+        3. push.apply 
+    */
+    var number = 1000;
+    var array1 = [1, 2, 3, 4, 5];
+    var array2 = [6, 7, 8, 9];
+
+    // 1. push
+    // var newarray1 = array1.push(number);
+    // console.log(" This: newarray1", newarray1);//6
+    // console.log(array1);// [1, 2, 3, 4, 5, 1000]
+
+    // var newarray2 = array1.push(array2);
+    // console.log(array1);//[1, 2, 3, 4, 5, 1000, Array(4)] 不是想要的结果
+
+    // 2. concat
+    var newarray3 = array1.concat(array2);
+    console.log(newarray3); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(array1); // [1, 2, 3, 4, 5]
+
+    // 3. push.apply
+    // array1.push.apply(array1,array2);
+    // console.log(array1);//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+    // 二 , 使用apply和内置函数
+    /* 
+        apply用法允许你在某些本来需要写成遍历数组变量的任务中使用内建的函数。
+    */
+
+    /* 找出数组中最大/小的数字 */
+    const numbers = [1, 2, 3, 4, 5, 6];
+    /* 应用(apply) Math.min/Math.max 内置函数完成 */
+    const max = Math.max.apply(null, numbers);
+    const min = Math.min.apply(null, numbers);
+    console.log(min);
+    console.log(max);
+    /* 代码对比： 用简单循环完成 */
+    // 超过65536个数会报错
+    max1 = -Infinity, min1 = +Infinity;
+
+    for (var i = 0; i < numbers.length; i++) {
+        if (numbers[i] > max1)
+            max1 = numbers[i];
+        if (numbers[i] < min1)
+            min1 = numbers[i];
+    }
+    console.log("F: min1", min1)
+    console.log("F: max1", max1)
+    // 优化写法
+    /* 
+        如果你的参数数组可能非常大，那么推荐使用下面这种策略来处理：
+        将参数数组切块后循环传入目标方法：
+    */
+    function minOfArray (arr) {
+        var min = Infinity;
+        var QUANTUM = 32768 ;
+
+        for (let i = 0,len = arr.length; i < len; i+=QUANTUM) {
+            let submin = Math.min.apply(null,arr.slice(i,Math.min(i+QUANTUM,len)));
+            min = Math.min(submin,min);
+        }
+        return min;
+    }
+
+    var min2 = minOfArray([23,342,53,6,25,2,345,734,123]);
+    console.log("F: min", min2)
+</script>
