@@ -4,7 +4,7 @@ var array = ['a', 'b', 'a', 'c', 'a', 'd'];
 
 var element = 'a';
 var idx = array.indexOf(element);
-// console.log("F: idx", idx)
+console.log("F: idx", idx)
 
 while (idx != -1) {
     indices.push(idx);
