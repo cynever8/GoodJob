@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./02_封装.js"></script>
+    <style>
+        div {
+            padding: 40px;
+        }
+
+        #div1 {
+            background: #00B83F;
+        }
+
+        #div2 {
+            background: #2a6496
+        }
+
+        #div3 {
+            background: #93C3CF
+        }
+    </style>
+    <script>
+        /* 
+            从顶层元素到目标元素或者从目标元素到顶层元素，
+            和事件冒泡是一个相反的过程。
+            事件从最不精确的对象(document 对象)开始触发，然后到最精确
+            (也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。
+        */
+        // 1. 事件捕获
+        window.onload = function () {
+            var odiv1 = document.getElementById("div1");
+            var odiv2 = document.getElementById("div2");
+            var odiv3 = document.getElementById("div3");
+
+            odiv1.addEventListener("click", function () {
+                alert("div1");
+            }, true);
+            odiv2.addEventListener("click", function () {
+                alert("div2");
+            }, true);
+            odiv3.addEventListener("click", function () {
+                alert("div3");
+            }, true);
+        }
+        // 绑定事件时通过addEventListener函数，它有三个参数，第三个参数若是true，则表示采用事件捕获，若是false，则表示采用事件冒泡。
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        div1
+        <div id="div2">
+            div2
+            <div id="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

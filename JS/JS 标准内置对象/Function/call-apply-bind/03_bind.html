@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,25 @@
     <title>Document</title>
 
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 
 <script>
-    const 
+    // 下面这个是对bind的封装，可以兼容比较老的浏览器
+    function bind(func, thisArg) {
+        var nativeBind = Function.prototype.bind;
+        var slice = Array.prototype.slice;
+        if (nativeBind && func.bind === nativeBind) {
+            return nativeBind.apply(func, slice.call(arguments, 1))
+        }
+
+        var args = slice.call(arguments, 2);
+        return function () {
+            return func.apply(thisArg, args.concat(slice.call(arguments)));
+        }
+    }
 </script>

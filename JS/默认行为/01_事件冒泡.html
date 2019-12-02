@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./02_封装.js"></script>
+    <style>
+        div {
+            padding: 40px;
+        }
+
+        #div1 {
+            background: #00B83F;
+        }
+
+        #div2 {
+            background: #2a6496
+        }
+
+        #div3 {
+            background: #93C3CF
+        }
+    </style>
+    <script>
+        // 1. 事件冒泡
+        window.onload = function () {
+            var odiv1 = document.getElementById("div1");
+            var odiv2 = document.getElementById("div2");
+            var odiv3 = document.getElementById("div3");
+
+            function fdiv1() {
+                alert("div1");
+            }
+
+            function fdiv2() {
+                alert("div2");
+            }
+
+            // function fdiv3() {
+            //     alert("div3");
+            // }
+            // 2. 阻止事件冒泡
+            // 给div3的绑定事件改为。ev.canceBubble=true;
+            function fdiv3 (ev) {
+                var en = ev || event;
+                en.cancelBubble = true;
+                alert('div3');
+            }
+            odiv1.onclick = fdiv1;
+            odiv2.onclick = fdiv2;
+            odiv3.onclick = fdiv3;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        div1
+        <div id="div2">
+            div2
+            <div id="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
