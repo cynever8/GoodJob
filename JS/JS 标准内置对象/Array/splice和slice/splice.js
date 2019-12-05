@@ -4,8 +4,8 @@
 
 // 😂从第 2 位开始删除 0 个元素，插入“drum”
 var myFish = ["angel", "clown", "mandarin", "sturgeon"];
-// myFish.splice(2,0,"drum")
-// myFish.splice(2,0,"drum","guitar")
+myFish.splice(2,0,"drum")
+myFish.splice(2,0,"drum","guitar")
 
 // console.log("F: myFish", myFish)
 
@@ -23,4 +23,4 @@ myFish3.splice(2, 1, "trumpet");
 // 😂从第 2 位开始删除所有元素
 var myFish4 = ["angel", "clown", "mandarin", "sturgeon"];
 myFish4.splice(2);
-console.log("F: myFish4", myFish4)
+console.log("F: myFish4", myFish4)//F: myFish4 [ 'angel', 'clown' ]

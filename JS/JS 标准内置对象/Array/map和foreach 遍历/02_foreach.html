@@ -18,10 +18,10 @@
     let numCallbackRuns = 0;
 
     arraySparse.forEach((element) => {
-        console.log(element);
+        // console.log(element);
         numCallbackRuns++;
     });
-    console.log("F: numCallbackRuns", numCallbackRuns);
+    // console.log("F: numCallbackRuns", numCallbackRuns);
 
     // -----------------😀for 循环转换为 forEach--------------------
     const items = ['Leon', 'Nina', 'Reader'];
@@ -32,7 +32,7 @@
     //     copy.push(items[i]);
     // }
     // after
-    items.forEach((items) => {
+    items.forEach((items,index) => {
         copy.push(items);
     })
     console.log("F: copy", copy);

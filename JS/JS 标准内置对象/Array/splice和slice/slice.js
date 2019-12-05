@@ -4,8 +4,8 @@
 var myFish = "[object Object]";
 // slice(-2,-1) 表示抽取了原数组中的倒数第二个元素到最后 一个元素（不包含最后一个元素，也就是只有倒数第二个元素）。
 var a = myFish.slice(8,-1);
-// console.log(a); // Object
 // console.log(myFish);// [object Object]
+// console.log(a); // Object
 
 
 // 2. 返回现有数组的一部分(截取数组)

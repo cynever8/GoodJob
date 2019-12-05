@@ -8,14 +8,13 @@
 * 参数
     1. callback
         - 为数组中每个元素执行的函数，该函数接收三个参数：
-    2. currentValue
-        - 数组中正在处理的当前元素。
-    3. index可选
-        - 数组中正在处理的当前元素的索引。
-    4. array可选
-        - forEach() 方法正在操作的数组。
-
-    - thisArg可选
+        1. currentValue
+            - 数组中正在处理的当前元素。
+        2. index可选
+            - 数组中正在处理的当前元素的索引。
+        3. array可选
+            - forEach() 方法正在操作的数组。
+    2. thisArg可选
         - 可选参数。当执行回调函数时用作 this 的值(参考对象)。 
 * 描述
     - forEach 遍历的范围在第一次调用 callback 前就会确定。调用 forEach 后添加到数组中的项不会被 callback 访问到
