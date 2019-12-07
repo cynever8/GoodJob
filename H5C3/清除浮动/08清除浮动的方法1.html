@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.father {
+			width: 800px;
+			background-color: #ccc;
+		}
+		.son1 {
+			float: left;
+			width: 200px;
+			/*height: 200px;*/
+			background-color: red;
+		}
+		.son2 {
+			float: left;
+			width: 200px;
+			height: 200px;
+			background-color: #0f0;
+		}
+		.footer {
+			width: 1200px;
+			height: 200px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div class="father">
+		<div class="son1">
+			习近平首先祝贺塔吉克斯坦成功主办亚信第五次峰会，指出峰会达成的重要共识和成果，向世界发出了积极信息，注入了正能量。中方高度评价塔吉克斯坦担任主席国以来为推进亚信进程所做大量工作，愿继续给予塔方大力支持，不断提升亚信整体合作水平。
+
+习近平指出，建交27年来，中塔关系始终保持快速发展良好势头。中塔已成为山水相连的好邻居、真诚互信的好朋友、合作共赢的好伙伴、彼此扶持的好兄弟，两国关系处在历史最好时期。“亲望亲好，邻望邻好。”中方乐见一个稳定、发展、繁荣的塔吉克斯坦，坚定支持塔吉克斯坦走符合本国国情的发展道路，坚定支持塔吉克斯坦政府为维护国家主权、安全所作努力。中方愿同塔方加强两国关系顶层设计，提升各领域合作水平，共同打造中塔发展共同体和安全共同体。
+		</div>
+		<div class="son2"></div>
+		<!-- 额外标签法,在最后一个浮动元素的后边, 添加额外标签, <div style="clear: both;"></div> 不推荐使用 -->
+		<div style="clear: both;"></div>
+	</div>
+	<!-- footer 底部 -->
+	<div class="footer"></div>
+</body>
+</html>
