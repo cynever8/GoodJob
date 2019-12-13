@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-05 20:49:37
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-13 22:41:44
+ */
 // 1. 用对象的属性查找数组里的对象
 var inventory = [
     { name: 'apples', quantity: 2 },
@@ -19,7 +26,7 @@ function isPrime(element, index, array) {
             return false;
         }
     }
-    return element  > 1
+    return element > 1
 }
 
 console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found

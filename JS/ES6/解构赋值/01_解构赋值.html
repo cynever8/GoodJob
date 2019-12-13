@@ -1,0 +1,92 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-13 20:55:36
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-13 21:34:30
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 解构的用途
+    // 1、简写
+    // var {
+    //     log,
+    //     info,
+    //     time,
+    //     timeEnd
+    // } = console;
+
+    // time('time');
+    // log('Hello');
+    // timeEnd('time');
+
+    // 2、使接口更友好，并且与顺序无关
+    // function fn({
+    //     name,
+    //     age,
+    //     hello
+    // }) {
+    //     hello(name, age);
+    // }
+    // fn({
+    //     name: "老王",
+    //     age: 23,
+    //     hello: function (name, age) {
+    //         console.log('This is ' + name + ' ' + age);
+    //     }
+    // })
+
+    // 3、交换变量
+
+    // var a = 1;
+    // var b = 2;
+    // [a, b] = [b, a];
+    // console.log(a, b); //2 1
+
+    // 4、函数默认值
+
+    // function fn({
+    //     a = 1,
+    //     b
+    // }) {
+    //     console.log(a, b); // 1 2
+    // }
+    // fn({
+    //     b: 2
+    // });
+
+    // 5、只取需要的值
+    var arr = [{
+            title: 1,
+            love: {
+                one: 'one_1',
+                two: 'two_1'
+            }
+        },
+        {
+            title: 2,
+            love: {
+                one: 'one_2',
+                two: 'two_2'
+            }
+        },
+    ];
+
+    for(let {title,love:{two}} of arr){
+        console.log(title,two);
+    }
+</script>

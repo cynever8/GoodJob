@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-05 20:46:22
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-13 22:52:31
+ -->
 ## find
 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 *  find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
