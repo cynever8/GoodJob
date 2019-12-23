@@ -1,0 +1,53 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-20 10:52:20
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-20 11:04:26
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let arr = [1, 2, 3];
+    let arr1 = {
+        naem: 'wangcai',
+        age: '99'
+    };
+
+    // 判断是否为数组
+    console.log(Array.isArray(arr)); //true
+    console.log(Array.isArray(arr1)); //false
+
+    // 将伪数组转换为数组的几个方法
+
+    // 方法一： 
+    // let newArr1 = Array.prototype.slice.call(arr1);
+    // console.log(Array.isArray(newArr1));
+
+    // 方法二
+    // let newArr1 = Array.from(arr1);
+    // console.log(Array.isArray(newArr1)); //true
+
+    // 方法三
+    // 对于伪数组arguments可以使用ES6里面的...运算符
+    function fn() {
+        console.log(arguments); //Arguments { 0: 1, 1: 2, 2: 3, 3: 4, 4: 5, … }
+        console.log(Array.isArray(arguments)); //false 
+        let newArr1 = [...arguments];
+        console.log(Array.isArray(newArr1)); //true
+    }
+    fn(1, 2, 3, 4, 5);
+</script>
