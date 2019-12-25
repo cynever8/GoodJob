@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // 柯里化函数
+    // 1. 函数嵌套函数 , 很不好
+    function add(a) {
+        return function (b) {
+            return function (c) {
+                return a + b + c
+            }
+        }
+    }
+    add(2)(3)(4); // 9
+
+    // ES6 箭头函数
+    let add1 = a=>b=>c=>a+b+c
+    add1(1)(2)(3) // 6
+
+
+</script>

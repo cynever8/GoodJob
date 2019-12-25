@@ -1,0 +1,65 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-23 20:15:22
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-23 21:21:01
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- https://www.cnblogs.com/chenpingzhao/p/4764791.html -->
+    <!-- FIXME: 伪数组有时间看一下 -->
+</body>
+
+
+</html>
+
+<script>
+    // 1. 可以得到对象和数组的第一个区别：对象没有数组Array.prototype的属性值
+    var obj = {}
+    var arr = [];
+    console.log("F: arr", arr)
+    console.log("F: obj", obj)
+
+    // 2. 什么是数组
+
+    // 数组具有一个最基本特征：索引，这是对象所没有的
+    var obj = {};
+    var arr = [];
+
+    obj[2] = 'a';
+    arr[2] = 'a';
+
+    console.log(obj[2]); // 输出 a
+    console.log(arr[2]); // 输出 a
+    console.log(obj.length); // 输出 undefined
+    console.log(arr.length); // 输出 3
+
+    // 3. 伪数组
+    /* 
+        1、拥有length属性，其它属性（索引）为非负整数
+            (对象中的索引会被当做字符串来处理，这里你可以当做是个非负整数串来理解)
+        2、不具有数组所具有的方法 
+    */
+    var fakeArray = {
+        length: 3,
+        "0": "first",
+        "1": "second",
+        "2": "third"
+    };
+
+    for (var i = 0; i < fakeArray.length; i++) {
+        console.log(fakeArray[i]);
+    }
+
+    console.log(Array.prototype.join.call(fakeArray, '+'));
+</script>

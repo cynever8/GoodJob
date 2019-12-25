@@ -1,0 +1,79 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-24 10:11:32
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-24 14:31:17
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // MDN
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+
+    /* 
+        1.
+        reducer 函数接收4个参数:
+
+            Accumulator (acc) (累计器)
+            Current Value (cur) (当前值)
+            Current Index (idx) (当前索引)
+            Source Array (src) (源数组)
+
+        您的 reducer 函数的返回值分配给累计器，
+        该返回值在数组的每个迭代中被记住，并最后成为最终的单个结果值。
+        FIXME: 后续操作还没看完
+    
+    */
+
+    // 1. reduce 累加实例
+    [0, 1, 2, 3, 4].reduce(function (accumulator, currentValue, currentIndex, array) {
+        return accumulator + currentValue;
+    });
+    [0, 1, 2, 3, 4].reduce((prev, curr) => prev + curr); //箭头函数写法
+
+    // 2. 改变累加初始值
+    [0, 1, 2, 3, 4].reduce((accumulator, currentValue, currentIndex, array) => {
+        return accumulator + currentValue;
+    }, 10);
+
+    // 例子
+
+    // 1. 数组里所有值的和
+    var sum = [4, 32, 1, 24, 1].reduce(
+        (acc,cur) => acc + cur,
+        0
+    );
+    // 2. 累加对象数组里的值
+    // 要累加对象数组中包含的值，必须提供初始值，以便各个item正确通过你的函数。
+    var initialValue = 0;
+    var sum2 = [
+        {x:1},
+        {x:2},
+        {x:1},
+    ].reduce(
+        (acc,cur)=>acc+cur.x,
+        0
+    )
+
+    // 3. 将二维数组转化为一维数组
+    var flattened = [[0,1],[2,3],[4,4]].reduce(
+        (a,b)=>a.concat(b),
+        []
+    );
+    console.log("F: flattened", flattened)
+    
+</script>

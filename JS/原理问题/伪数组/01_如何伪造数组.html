@@ -1,0 +1,42 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-23 19:59:46
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-23 20:12:46
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var elems = {
+
+        length: 0,
+
+        add: function (elem) {
+            Array.prototype.push.call(this, elem);
+        },
+
+        gather: function (id) {
+            this.add(document.getElementById(id));
+        }
+    };
+
+    elems.gather("first");
+
+    elems.gather("second");
+
+    console.log(elems);
+</script>

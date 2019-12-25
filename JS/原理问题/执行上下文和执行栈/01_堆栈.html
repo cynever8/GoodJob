@@ -1,0 +1,99 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-23 16:19:58
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-23 19:58:24
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // https://juejin.im/post/5b6c4976f265da0f4f1669ac#heading-8
+    // FIXME: 还有三个算法没看完
+    function Stack() {
+        this.space = [];
+    }
+    Stack.prototype = {
+        constructor: Stack,
+        // 入栈
+        push: function (value) {
+            return this.space.push(value);
+        },
+        // 出栈
+        pop: function () {
+            return this.space.pop();
+        },
+        // 清空栈
+        clear: function () {
+            this.space = [];
+        },
+        // 读取栈顶readTop
+        // 读取栈顶数据，采用数组下标的方式进行获取。带来的一个好处就是：下标超出数组有效范围时，返回值为undefined。
+        readTop: function () {
+            return this.space[this.space.length - 1]
+        },
+        // 读取整个栈read
+        read: function () {
+            return this.space;
+        }
+    }
+    // console.log(Stack.prototype);
+
+    // 1. 数组reverse的实现
+    /* 
+        如代码所示，可分为以下几个步骤：
+
+        1. 实例化一个堆栈用于存储数据
+        2. 将传入的数组进行倒序遍历，并逐个压入堆栈
+        3. 最后使用read接口，输出数据
+
+    */
+    arr1 = [1, 2, 3, 4, 5, 6]
+
+    function reverse(arr) {
+        var ArrStack = new Stack();
+
+        for (var i = arr.length - 1; i >= 0; i--) {
+            ArrStack.push(arr[i]);
+        }
+        return ArrStack.read();
+    }
+    reverse(arr1)
+
+    // 2. 十进制转换为二进制
+    // 将对2取余的结果依次压入堆栈保存，最后反转输出即可。
+    function binary(number) {
+        var tmp = number;
+        var tmpReverse = number;
+        var ArrStack = new Stack();
+
+        if (number === 0) {
+            return 0;
+        }
+
+        while (tmp) {
+            ArrStack.push(tmp % 2);
+            tmp = parseInt(tmp / 2, 10);
+        }
+
+        tmpReverse = reverse(ArrStack.read().join(''))
+        console.log(tmpReverse.map(Number));// 将数组转化未数字
+        return tmpReverse;
+    }
+
+    binary(14);
+    binary(1000);
+</script>

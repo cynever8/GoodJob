@@ -1,0 +1,52 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-24 09:51:21
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-24 09:58:59
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // https://juejin.im/post/5950b0c56fb9a06bca0b7c04
+
+    // 命令式
+    var numbers = [1,2,3,4,5];
+    var doubled = [];
+    var newNumbers= null;
+
+    for (let i = 0; i < numbers.length; i++) {
+        newNumbers = numbers[i]*2
+        doubled.push(newNumbers)
+    }
+
+    console.log(doubled);
+
+    // 声明式
+    var arr = [1,2,3,6];
+    // ES5
+    // var doubled2 = arr.map(function  (n) {
+    //     return n *2
+    // })
+
+    // ES6
+    // let doubled2 = arr.map((n)=>{
+    //     return n*2
+    // })
+
+    // ES6箭头函数简写
+    let doubled2 = arr.map((n)=>n*2)
+    console.log(doubled2);
+
+</script>

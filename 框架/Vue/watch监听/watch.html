@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-for="(item,index) of arr" :key="index">{{item}}</p>
+        <button @click="handleClick()">点击</button>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                arr: [1, 2, 3, 4, 45]
+            }
+        },
+        methods: {
+            handleClick() {
+                // this.arr.push(100);
+
+                // 1.直接去向数组中添加数据 ,  watch监听不到数组的变化
+                // this.arr[0]= 100; // 没有监听到, 100被添加进arr了
+                // console.log(this.arr);//(5) [100, 2, 3, 4, 45, __ob__: Observer]
+
+                // 2.改变数组的length长度 , watch监听不到
+                // this.arr.length = 0;// 数组被赋值为空,watch没有监听到
+                // console.log(this.arr);//[__ob__: Observer]
+
+                // 解决方案 1. :this.$set
+                // 参数: 1. 要改变的值 , 2.数组的下标 , 3. 修改/添加的数据
+                // this.$set(this.arr,0,100);
+
+                //解决方案 2. splice
+                // this.arr.splice(0, this.arr.length);
+                // console.log(this.arr); //[__ob__: Observer]
+
+                
+            }
+        },
+        watch: {
+            arr(newVal, oldVal) {
+                console.log("数组发生了变化");
+                // console.log(newVal,oldVal);// newVal = oldVla // 对象是应用数据类型,当对地址进行修改时,两个值都会发生改变
+            }
+        },
+    })
+</script>
