@@ -1,0 +1,53 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-25 16:23:08
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-25 17:09:41
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    Array.prototype.mapAlley = function (callback) {
+        if (typeof callback != 'function') {
+            throw new Error(callback + 'is not function');
+        }
+
+        //获取使用map这个方法的数组
+        var arr = this;
+
+        //获取this的指向 如果第二个参数传递了callback这个函数this的指向就指向第二个参数 如果没有传递则指向window
+        var _this = arguments[1] || window;
+
+        //es5中都不会对原数组做操作因此需要返回一个新的数组
+        var newArr = [];
+
+        for (var i = 0; i < arr.length; i++) {
+            //将callback的返回值添加新的数组中
+            newArr.push(callback.call(_this, arr[i], i, arr));
+        }
+        return newArr;
+    }
+
+    const array1 = [1, 4, 9, 16];
+
+    // pass a function to map
+    // const map1 = array1.mapAlley(x => x * 2);
+    const map1 = array1.mapAlley(x => x * 2);
+
+    console.log(map1);
+    // expected output: Array [2, 8, 18, 32]
+</script>
