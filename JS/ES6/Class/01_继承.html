@@ -1,0 +1,39 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-26 09:28:02
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-26 09:32:23
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    class Person {
+        constructor(name) {
+            this.name = name
+            console.log(this);
+        }
+    }
+    class Man extends Person{
+        constructor(name){
+            super(name)
+            console.log(this);
+        }
+    }
+
+    let p = new Man("Leon");
+    console.log(p.name);
+</script>

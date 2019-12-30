@@ -1,0 +1,105 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-11-25 11:08:26
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-28 08:55:59
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function fn(executor) {
+        return new Promise(executor); // js 会自动为构造函数传递两个参数
+        /** 
+         *       resolve:function,执行resolve方法会将Promise的状态从padding=>fulfilled
+         *
+         *       reject:function, 执行reject方法会将promise的状态从 pendding=>rejected
+         *
+         * Promise 语法
+         *      给构造函数传递一个参数，参数类型是函数。
+         *      参数中有两个形参，型参也是函数，但是不用我们管，
+         *      系统会给我们传递两个函数过来。
+         * 
+         *      resolve：函数（系统传递过来的，我们只需要调用）
+         *          调用resolve方法，Promise的内部状态会由 pending 转为 fulfilled
+         *      
+         *      resolve方法表示执行器已经执行完成。会继续调用下一步程序。
+         *          下一步在哪？
+         * 
+         *      
+         * 
+         *      reject：函数 （系统传递过来的，我们只需要调用）
+         *          调用reject方法，Promise的内部状态会有 pending 转为 rejected
+         *      
+         *      reject 表示拒绝。可以继续下一步输出错误的原因
+         * 
+         * 小结：
+         *      Promise 内部有三个状态
+         *          只能从 pending 转为 fulfilled 
+         *          或者从 pending 转为 rejected
+         *          不能从 fulfilled 转为 rejected
+         *          不能从 rejected 转为 fulfilled
+         *          
+         *          也就是说Promise的状态不可逆向修改
+        */
+    }
+
+    // 1. 回调地狱
+    // fn(function (resolve, reject) {
+    //     window.setTimeout(function () {
+    //         console.log(3);
+    //         window.setTimeout(function () {
+    //             console.log(2);
+    //             window.setTimeout(function () {
+    //                 console.log(1);
+    //             },1000)
+    //         },2000)
+    //     }, 3000)
+    // })
+    
+    //2. Promise方案
+    // fn(function (resolve, reject) {
+    //     window.setTimeout(function () {
+    //         console.log(3);
+    //         resolve();
+    //     }, 3000)
+    // }).then(function () {
+    //     return fn(function (resolve, reject) {
+    //         window.setTimeout(function () {
+    //             console.log(2);
+    //             resolve()
+    //         }, 2000)
+    //     })
+    // }).then(function () {
+    //     return fn(function (resolve, reject) {
+    //         window.setTimeout(function () {
+    //             console.log(1);
+    //             // resolve();
+    //         }, 1000)
+    //     })
+    // })
+
+    new Promise (function  (resolve,reject) {
+        window.setTimeout(function(){
+            console.log(3);
+            resolve();
+        },3000)
+    }).then(()=>{
+        console.log("One");
+    },()=>{}).then(()=>{
+        console.log("Two");
+    },()=>{});
+</script>
