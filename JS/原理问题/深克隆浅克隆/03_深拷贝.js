@@ -56,14 +56,34 @@ function clone(target) {
         if (checkedType(value) === 'Object' || checkedType(value) === 'Array') {//对象/数组里嵌套了对象/数组
             //继续遍历获取到value值
             result[i] = clone(value);
-        }else{//获取到value值是基本的数据类型或是函数
-            result[i]=value;
+        } else {//获取到value值是基本的数据类型或是函数
+            result[i] = value;
         }
     }
     return result;
 }
 
+// 封装一个深拷贝
 
+function deepClone(origin) {
+    var isObject = any => typeof any == 'object' && any != null
+    var isArray = any => Object.prototype.toString.call(any) === '[object Array]'
+    if (!isObject(origin)) return origin
+    var target = isArray(origin) ? [] : {}
+    for (var prop in origin) {
+        if (origin.hasOwnProperty(prop)) {
+            var value = origin[prop]
+            if (isObject(value)) {
+                target[prop] = deepClone(value)
+            } else {
+                target[prop] = value
+            }
+            //if...else...可换成三目运算符
+            //target[prop] = isObject(value) ? deepClone(value) : value
+        }
+    }
+    return target;
+}
 
 // 😂下面这个也是递归实现深拷贝
 
