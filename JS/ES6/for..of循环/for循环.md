@@ -17,4 +17,6 @@ for (variable of iterable) {
 
 
 ## for...of与for...in的区别
-* for in遍历的是数组的索引（即键名），而for of遍历的是数组元素值。 所以for in更适合遍历对象，不要使用for in遍历数组。
+* for in遍历的是数组的索引（即键名），
+* 而for of遍历的是数组元素值。 
+* 所以for in更适合遍历对象，不要使用for in遍历数组。

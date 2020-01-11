@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-02 20:11:25
+ * @LastEditors: Leon
+ * @LastEditTime: 2020-01-10 22:15:28
+ */
 // 1. 迭代Array
 
 let iterable = [1,2,3,4,5];
