@@ -1,0 +1,31 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2020-02-04 22:11:15
+ * @LastEditors  : Leon
+ * @LastEditTime : 2020-02-05 18:47:00
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app"></div>
+    
+</body>
+</html>
+<script src="./04_Vue3.0模拟响应式.js"></script>
+<!-- <script src="./03_模拟响应式.js"></script> -->
+<script>
+    var vm = new vue();
+    setTimeout(() => {
+        console.log();
+        console.log("Changes "+ vm.$data);
+        vm.$data.a=100;
+    }, 2000);
+</script>
