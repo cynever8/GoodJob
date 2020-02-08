@@ -239,6 +239,7 @@
   /**
    * Mix properties into target object.
    */
+  // 
   function extend (to, _from) {
     for (var key in _from) {
       to[key] = _from[key];
@@ -1033,6 +1034,8 @@
     }
 
     var childOb = !shallow && observe(val);
+    // 数据双向绑定
+    // 监听传入对象的某一个属性
     Object.defineProperty(obj, key, {
       enumerable: true,
       configurable: true,

@@ -1,0 +1,32 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2020-02-08 20:01:19
+ * @LastEditors  : Leon
+ * @LastEditTime : 2020-02-08 20:24:33
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+var a = {n:1};
+var b = a;
+a.x = a = {n:2};
+console.log(a)
+console.log(a.x);// undefined
+console.log(b.x);// { n: 2 }
+console.log(b);// { n: 2 }
+</script>
