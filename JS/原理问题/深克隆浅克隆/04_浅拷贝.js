@@ -1,6 +1,14 @@
+/*
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-11-29 11:24:38
+ * @LastEditors: Leon
+ * @LastEditTime: 2020-02-11 14:04:33
+ */
 // 浅拷贝的实现方式
 // 1. Object.assign()----------------------------
-// Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。但是 Object.assign()进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。
+// Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。
+// 但是 Object.assign()进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。
 var obj = { teacher: { name: "Leon", age: 23 } };
 var initalObj = Object.assign({}, obj);
 initalObj.teacher.name = "Mark";
