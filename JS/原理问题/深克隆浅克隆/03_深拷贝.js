@@ -38,7 +38,7 @@ function checkedType(target) {
 }
 // checkedType(object) // 监测数据
 function clone(target) {
-    // 判断泡杯的数据类型
+    // 判断拷贝的数据类型
     // 初始化变量reslut成为最终克隆的数据
     let result, targetType = checkedType(target);
     if (targetType === 'Object') {

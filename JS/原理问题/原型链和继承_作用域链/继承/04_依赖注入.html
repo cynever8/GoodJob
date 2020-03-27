@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+         * 依赖注入
+         */
+
+        function Modules() {
+            this.ajax = {};
+            this.slider = {};
+            this.expand = {};
+            this.char = {};
+            this.snake = {};
+            this.fire = {};
+        }
+
+        function App() {
+            this.init = function (_list, f) {
+                var _modules = new Modules();
+                var _args = [];
+
+                for (var i = 0; i < _list.length; i++) {
+                    _args.push(_modules[_list[i]]);
+                }
+                f.apply(null, _args);
+            }
+        }
+
+        let _app = new App()
+        // init检查是否依赖
+        _app.init(["ajax", "slider", "fire"], function (_ajax, _slider, _fire) {
+            _ajax.request({
+                success: function () {
+                    _slider.start();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

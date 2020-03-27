@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+         * call & apply 中的this
+         * 
+         * call 和 apply 的当前函数(Animal)内的 this 指向 call & apply方法的第一个参数。
+         */
+        function Animal() {
+            this.leg = 4;
+            this.weight = 5;
+            this.run = function () {
+
+            };
+            this.eat = function () {
+
+            };
+        }
+        var _cat = {};
+        Animal.call(_cat); // this指向cat
+        console.log("F: _cat", _cat)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 1. 创建私有变量
+    // 用户无法直接获取和修改变量的值，必须通过调用方法
+    /* 
+        任何在函数中定义的变量，都可以认为是私有变量，因为不能在函数外部访问这些变量。
+        私有变量包括函数的参数、局部变量和函数内定义的其他函数。
+    */
+    function People(num) {
+        // 私有变量
+        var age = num;
+        this.getAge = function () {
+            return age;
+        };
+        this.addAge = function () {
+            age++
+        }
+    }
+    var msg = new People(20);
+    // console.log(msg.age);//underfined
+    // console.log(msg.getAge());//20
+
+    // 2. 单例模式
+    /* 
+        模块模式（The Module Pattern）：为单例创建私有变量和方法。
+        单例（singleton）：指的是只有一个实例的对象。一般以对象字面量的方式来创建一个单例对象。
+        单例模式的核心就是：保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+    */
+    var singleton = {
+        name: "percy",
+        speak: function () {
+            console.log("speaking!!!");
+        },
+        getName: function () {
+            return this.name;
+        }
+    };
+
+    // 下面使用模块模式创建单例：
+    var singleton = (function () {
+        // 私有变量
+        var age = 22;
+        var speak = function () {
+            console.log("speaking!!!");
+        };
+        // 特权（或公有）属性和方法
+        return {
+            name: "percy",
+            getAge: function () {
+                return age;
+            }
+        };
+    })();
+</script>

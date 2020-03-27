@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 1请求
+    function getData1() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                console.log('1执行了')
+                resolve('请求到模拟数据1111拉')
+            }, 2000)
+        })
+    }
+    // 2请求
+    function getData2(params) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                console.log('2执行了')
+                resolve('请求到模拟数据22222拉！params：' + params)
+            }, 1500)
+        })
+    }
+
+    // async 异步回调 并发
+
+    // 1请求、2请求同时发,规定请求到达的顺序
+    async function asyncDemo2() {
+        const arr = [getData1, getData2]
+        const textPromises = arr.map(async function (doc) {
+            const response = await doc()
+            return response
+        })
+        // 按次序输出
+        for (const textPromise of textPromises) {
+            console.log(await textPromise);
+        }
+    }
+    asyncDemo2()
+</script>

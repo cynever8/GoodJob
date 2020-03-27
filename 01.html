@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<ml>
+    <script>
+        // const waitTime = interval => new Promise(resolve => {
+        //     setTimeout(resolve, interval)
+        // })
+
+        var waitTime = function waitTime(interval) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(resolve, interval);
+            });
+        };
+
+        // waitTime(1000).then(a => console.log(a))
+
+        waitTime(1000).then(function (a) {
+            return console.log(a);
+        });
+
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(() => console.log(i))
+        }
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(() => {
+                console.log(i)
+            })
+        }
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(i => console.log(i)) // under
+        }
+
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(
+                function (i) {
+                    return console.log(i);
+                }
+            ); // under
+        }
+
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(r => console.log(i)) // 5
+        }
+
+        for (var i = 0; i < 5; i++) {
+            waitTime(1000).then(
+                function (i) {
+                    return console.log(i);
+                }
+            ); // under
+        }
+        // for (var i = 0; i < 5; i++) {
+        //     waitTime(1000).then(i => console.log(i))
+        // }
+    </script>

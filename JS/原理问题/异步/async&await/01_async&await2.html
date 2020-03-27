@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function fetchUser() {
+        return new Promise((resolve, reject) => {
+            fetch('https://monitor.maoyan.com/api/speed')
+                .then((data) => {
+                    resolve(data.json());
+                }, (error) => {
+                    reject(error);
+                })
+        });
+    }
+    /**
+     * Promise 方式
+     */
+    // function getUserByPromise() {
+    //     fetchUser()
+    //         .then((data) => {
+    //             console.log(data);
+    //         }, (error) => {
+    //             console.log(error);
+    //         })
+    // }
+    // getUserByPromise();
+
+    async function getUserByAsync() {
+        let user = await fetchUser();
+        return user;
+    }
+    getUserByAsync().then(v => console.log(v));
+</script>

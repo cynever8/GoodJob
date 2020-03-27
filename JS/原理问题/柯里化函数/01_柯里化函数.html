@@ -17,18 +17,18 @@
 <script>
     //-------------------------1-------------------------
     // 计算每个月花了多少钱
-    var monthlyCost = 0;
-    var cost = function (money) {
-        monthlyCost += money;
-    };
+    // var monthlyCost = 0;
+    // var cost = function (money) {
+    //     monthlyCost += money;
+    // };
 
-    cost(100); // 第 1 天开销 
-    cost(100); // 第 2 天开销 
-    cost(200); // 第 3 天开销 
-    //...
-    cost(200); // 第 30 天开销 
+    // cost(100); // 第 1 天开销 
+    // cost(100); // 第 2 天开销 
+    // cost(200); // 第 3 天开销 
+    // //...
+    // cost(200); // 第 30 天开销 
 
-    console.log(monthlyCost); // 第 1 天开销 
+    // console.log(monthlyCost); // 第 1 天开销 
 
     /* 
         每天结束后都会记录并计算到今天为止花掉的钱。
@@ -70,15 +70,15 @@
         也可以接收一些必要参数，
         下面是函数柯里化(currying)的改进代码
     */
-    var currying = function (fn){
-        var args = [];
-        // 存储传到curring函数中的除了fn之外的其他函数,并存储到args函数中
-        args = args.concat([].slice.call(arguments,1));
-        return function(){
-            if(arguments.length === 0){
+    // var currying = function (fn){
+    //     var args = [];
+    //     // 存储传到curring函数中的除了fn之外的其他函数,并存储到args函数中
+    //     args = args.concat([].slice.call(arguments,1));
+    //     return function(){
+    //         if(arguments.length === 0){
                 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
 </script>

@@ -1,7 +1,7 @@
 // https://juejin.im/post/5a5a201f5188257345017af1
 function test(a, b, c, d) {
     var arg = Array.prototype.slice.call(arguments, 1);
-    // console.log(arg);
+    console.log(arg);
 }
 test("1", "2", "3", "4");
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    // https://juejin.im/post/57dc97f35bbb50005e5b39bd(call 和 apply)
+        /**
+         * call && apply 继承
+         *      函数都有call 和 apply 方法，普通对象没有这两个方法。
+         *      call & apply 的语法基本相同
+         *      call 方法的第二个参数开始，才是给函数传递实参。
+         *      call 方法的第一个参数一般情况下是用来继承用。
+         * 
+         * call & apply 方法继承的属性和方法都是实例属性和实例方法。
+         *      不能继承类的原型上的属性和方法。
+         * 
+         * call 方法 传参数 是一个一个传递
+         * apply 方法 传递参数 是一个数组。数组可以包含很多数据。
+         * 
+         */
+
+        // function fn(_b){
+        //     console.log(_b);
+        // }
+        // fn(10);
+        // fn.call(this,"降龙十八掌");
+
+        // function Animal() {
+        //     this.leg = 4;
+        //     this.run = function () {
+        //         console.log("this animal can run");
+        //     }
+        // }
+        // var _cat = {};
+        // Animal.call(_cat);
+        // console.log(_cat); //小猫学会跑了。也长腿了,实现了继承。
+
+
+
+        //多继承
+        function Animal(a,b,c){
+            console.log(a,b,c);
+            this.leg=4;
+            this.run=function(){
+                console.log("this animal can run");
+            }
+        }
+        function Cat(){
+            this.catch=function(){
+                console.log("this cat is catching");
+            }
+        }
+        Cat.prototype.eat=function(){
+            console.log("eat");
+        };
+        var _fcc={
+            weight:"5kg"
+        };
+        // Animal.call(_fcc,10,1000,10000);
+        // Cat.call(_fcc);
+        // console.log(_fcc); 
+
+        Animal.apply(_fcc,[10,1000,10000]);
+        Cat.apply(_fcc);
+        console.log("_fcc",_fcc);
+        /* 
+            _fcc : Object
+                weight: "5kg" // 小花猫
+                leg: 4          // 动物
+                run: ƒ ()
+                catch: ƒ ()     // 捉鱼
+                __proto__: Object
+        
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

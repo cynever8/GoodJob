@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+         * ES6 的继承 通过关键字  extends 来实现继承
+         * 
+         * ES6 的多继承 也是链式继承原理
+         * 
+         * ES6 继承传参 => super
+         * 
+         * 父类、超类（super）、基类
+         */
+        class Animal {
+            constructor() {
+                this.leg = 4;
+                this.weight = 5;
+                this.shout = function () { //实例方法
+                }
+            }
+            run() { //原型方法
+                console.log("this animal can run");
+            }
+        }
+        class Cat extends Animal {
+            sleep() {
+                console.log("this cat is sleeping");
+            }
+        }
+        class FullColorCat extends Cat {
+
+        }
+        let _cat = new FullColorCat();
+        console.log(_cat);
+
+        // function Animal(){
+        //     this.leg=4;
+        //     this.weight=5;
+        // }
+        // Animal.prototype.run=function(){
+        //     console.log("this animal can run");
+        // };
+
+        // function Cat(){
+
+        // }
+        // Cat.prototype=new Animal();  
+
+        // var _cat=new Cat();
+        // console.log(_cat);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

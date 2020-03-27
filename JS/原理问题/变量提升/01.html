@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function  fn() {
+        console.log(a);
+        // let a = 1; // 报错
+        // var a = 1 //  underfined
+    }
+    fn();
+
+    /* 函数声明式 */
+    (function(){
+        fn();
+        function fn() {
+            console.log('来自函数声明式fn');
+        }
+    })();
+
+    /* 函数表达式 */
+    (function(){
+        fn();
+        var fn = function() {
+            console.log('来自函数表达式fn');
+        }
+    })();
+</script>

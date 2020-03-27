@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+         * ES6 构造函数传参
+         */
+        // class Animal{//基类
+        //     constructor(_leg,_weight){//构造函数的形参
+        //         this.leg=_leg;
+        //         this.weight=_weight;
+        //     }
+        //     run(){
+        //         console.log("this animal can run");
+        //     }
+        // }
+        // let _cat=new Animal(4,5);
+        // console.log(_cat);
+
+
+        /**
+         * 继承传参
+         * 
+         * 继承的过程中，当子类的方法或属性和超类的方法或属性发生命名冲突时，就近原则使用。
+         * 优先使用实例方法或实例属性，如果不存在会在原型链上逐级查找，
+         * 一直找到Object的实例对象。
+         */
+        class Animal{//基类
+            constructor(_leg,_weight){//构造函数的形参
+                this.leg=_leg;
+                this.weight=_weight;
+            }
+            run(){
+                console.log("this animal can run");
+            }
+        }
+        class Cat extends Animal{
+            // constructor(_weight,_leg){
+            //     super(_leg,_weight);//调用超类构造函数
+            // }
+            sleep(){
+                console.log("this cat is sleeping");
+            }
+        }
+        let _cat=new Cat(4,5);
+        console.log(_cat);
+
+
+        // function Animal(){
+        //     this.run=function(){
+        //         console.log("this animal can run");
+        //     }
+        // }
+        // function Cat(){
+        //     this.run=function(){
+        //         console.log("this cat is running");
+        //     }
+        // }
+        // Cat.prototype=new Animal();
+        // var _cat=new Cat();
+        // _cat.run();
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -9,7 +9,12 @@
 // 1. Object.assign()----------------------------
 // Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。
 // 但是 Object.assign()进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。
-var obj = { teacher: { name: "Leon", age: 23 } };
+var obj = { 
+    teacher: { 
+        name: "Leon", 
+        age: 23 
+    } 
+};
 var initalObj = Object.assign({}, obj);
 initalObj.teacher.name = "Mark";
 // console.log(obj.teacher.name);
@@ -29,10 +34,10 @@ let arr = [1, 3, {
 }];
 let arr2 = arr.concat();
 arr2[2].username = "Alex"
-// console.log(arr);
-// console.log(arr2);
+console.log(arr);
+console.log(arr2);
 
-//3..Array.prototype.slice()---------------------------------
+//3..Array.prototype.slice()----------------------------
 let list = ["a","b",{
     username:"Pide"
 }]

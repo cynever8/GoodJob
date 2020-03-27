@@ -34,27 +34,24 @@
         obj.name = "Leon";
     }
     var person = new Object();
-    setName(person); //obj = person
-    console.log(person.name); 
+    setName(person); // obj = person
+    console.log(person.name); // Leon
 
     function setName2(obj){
         obj.name = "Nina";
-
-        // 改变obj的指向,此时obj指向一个新的内存地址,不在和perso指向同一个
+        // 改变obj的指向,此时obj指向一个新的内存地址,不在和person指向同一个
         obj = new Object();
         obj.name = "Google";
-        console.log(obj.name);
-
+        console.log(obj.name); // Google
     }
 
-    var person = new Object();
     setName2 (person);
-    console.log(person.name)
+    console.log(person.name) // Nina
 
     // 引用传递2---------------------------------------------------
     var arr = [];
     arr.push(1);
-    console.log(" This: arr", arr);
+    console.log(" This: arr", arr);//[1]
 
     var reference = [1];
     var refCopy = reference;

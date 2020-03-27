@@ -267,10 +267,12 @@
 
     }
 
-    查找数组中最大值
 
     //查看数组中的最大值
-
+    var arr = [
+        [1, 2, 3],
+        [4, 5, 6, [7, 8, [9, 10]]]
+    ];
     var n = arr.reduce(function (prev, curr, index, array) {
 
         return Math.max(prev, curr)
@@ -280,10 +282,7 @@
 
     //实现扁平化数组
 
-    var arr = [
-        [1, 2, 3],
-        [4, 5, 6, [7, 8, [9, 10]]]
-    ];
+
 
 
     function mapArr(arr) {
@@ -394,7 +393,7 @@
 
     }
 
-    console.log(quchong1(brr))
+    console.log(quchong1(arr))
 
 
 

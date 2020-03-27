@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+            Promise:主要作用使用来解决异步嵌套（回调地狱）
+
+        */
+        // _ajax.request({
+        //     url:"category.php",
+        //     success:function(_data){
+        //         //complete
+        //         _ajax.request({
+        //             url:"product.php",
+        //             success:function(_data){
+        //             }      
+        //         });
+        //     }
+        // });
+
+        // function fn(_executor){
+        //     return new Promise(_executor);//js 会自动给构造器传递2个参数
+        //     /*
+        //         resolve:function,执行resolve方法会将Promise的状态从pending=>fulfilled
+
+        //         reject:function,执行reject方法会将Promise的状态从pending=>rejected
+        //     */
+        // }
+        // fn(function(resolve,reject){
+        //     window.setTimeout(function(){
+        //         console.log(3);
+        //         resolve();
+        //     },3000)
+        // }).then(function(){
+        //     return fn(function(resolve,reject){
+        //         window.setTimeout(function(){
+        //             console.log(2);
+        //             resolve();
+        //         },2000);
+        //     });
+        // }).then(function(resolve,reject){
+        //     window.setTimeout(function(){
+        //         console.log(1);
+        //         // resolve();
+        //     },1000);
+        // });
+
+        // window.setTimeout(function(){
+        //     console.log(3);
+        //     window.setTimeout(function(){
+        //         console.log(2);
+        //         window.setTimeout(function(){
+        //             console.log(1);
+        //             // resolve();
+        //         },1000);
+        //     },2000);
+        // },3000)
+        
+        function Queue(_executor){
+            var _queue=[];
+            var _state="PENDING";
+            this.then=function(f){
+                _queue.push(f);
+                return this;
+            };
+            function resolve(){
+                _state="FULFILLED";
+                while(_queue.length>0){
+                    _queue.shift()();
+                }
+            }
+            function reject(){
+                _state="REJECTED";
+            }
+            window.setTimeout(function(){
+                _executor(resolve,reject);
+            },1000);
+        }
+
+
+        var _q=new Queue(function(resolve,reject){
+            window.setTimeout(function(){
+                console.log(3);
+                // resolve();
+            },3000)
+        });
+
+
+        _q.then(function(){
+            window.setTimeout(function(){
+                console.log(2);
+                // resolve();
+            },2000);
+        }).then(function(){
+            window.setTimeout(function(){
+                console.log(1);
+                // resolve();
+            },1000);
+        });
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

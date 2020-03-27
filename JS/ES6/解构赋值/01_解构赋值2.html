@@ -19,14 +19,24 @@
 </html>
 
 <script>
-    // Array
-    var arr = [1,2];
-    let [a,b] = arr;
-    console.log(a,b);
+    // 解构的用途
+    // 1、简写
+    var {log,info,time,timeEnd} = console;
 
-    // Object
-    var obj = {i:1,j:2,name:"leon"}
-    var {i,j,name:names} = obj
-    console.log(i,j,names);
+    time('time');
+    log('Hello');
+    timeEnd('time');
 
+    // 2、使接口更友好，并且与顺序无关
+    function fn({name,age,hello}){
+        hello(name,age);
+    }
+
+    fn({
+        name:'老王',
+        age:23,
+        hello:function(name,age){
+            console.log('This is ' + name + ' ' + age); // This is 老王 23
+        }
+    });
 </script>

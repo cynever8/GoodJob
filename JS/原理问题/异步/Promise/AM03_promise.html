@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        // function f1(resolve,reject){
+        //     window.setTimeout(function(){
+        //         console.log(3);
+        //         f2();
+        //     },3000)
+        // }
+        // function f2(){
+        //     window.setTimeout(function(){
+        //         console.log(2);
+        //         f3();
+        //     },2000);
+        // }
+        // function f3(resolve,reject){
+        //     window.setTimeout(function(){
+        //         console.log(1);
+        //     },1000);
+        // };
+
+        /**
+         * catch 用于捕获异常
+         * all Promise的静态方法（类的方法称为静态方法）
+         *      all方法中传递Promise的实例对象集合（数组）。
+         *      all 方法需等待所有Promise的实例对象运行完毕后调用then方法中的函数
+         * race
+         *      race方法中传递Promise的实例对象集合（数组）。
+         *      race 方法中只要有一个Promise的实例对象运行完毕就会调用then方法中的函数
+         * then
+         *      调用resolve或者reject方法时会触发then方法中的函数执行
+         */
+        //catch
+        // new Promise(function(){
+        //     throw "error";
+        // }).catch(function(_reason){
+        //     console.log(_reason);
+        // });
+        function p1(){
+            return new Promise(function(resolve,reject){
+                window.setTimeout(function(){
+                    console.log(3);
+                    resolve();
+                },3000)
+            });
+        }
+        function p2(){
+            return new Promise(function(resolve,reject){
+                window.setTimeout(function(){
+                    console.log(2);
+                    resolve();
+                },2000)
+            });
+        }
+
+        // Promise.all([p1(),p2()]).then(function(){
+        //     console.log("complete");
+        // });
+        Promise.race([p1(),p2()]).then(function(){
+            console.log("complete");
+        });
+
+
+
+
+
+
+
+
+
+
+        // class Animal{//类本身也是对象
+        //     static run(){
+        //         console.log("this animal can run");
+        //     }
+        // }
+        // new Animal().run();
+        // Animal.run();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

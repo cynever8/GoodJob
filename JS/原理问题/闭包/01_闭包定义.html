@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        /**
+         * 闭包：函数作用域外访问函数作用域内变量的函数。
+         *      缺点：容易导致变量无法被释放（变量无法被回收）。也就是说：容易造成内存泄漏。
+         *      优点：可以将局部变量当成全局变量来使用。因为全局变量会导致命名冲突。
+         *            换句话说：可以解决全局变量的命名冲突。
+         * 
+         * 释放对闭包的引用
+         *      add5 = null;
+         * 函数运行完毕就会被立即回收，为什么a没有被回收？
+         * 
+         *      函数返回值是个一个函数。
+         *      _f关联上return 后的函数的内存地址。
+         *      _f的作用域是全局的。在script没有被释放，_f就一直有效；
+         *      _f所指向的函数关联父级作用域，所以父级作用域中的被关联的变量，也无法被释放。
+         */
+        function container(){
+            var a=10;
+            return function(){
+                a++;
+                console.log(a);//11
+            };
+        }
+        var _f=container();
+        _f();
+        _f();
+        
+
+
+
+        function Animal(){
+            var leg=4;
+            var name="Cat";
+            this.run=function(){
+                console.log("use 4 leg");
+                leg=3;
+            };
+            this.exist=function(){
+                console.log(leg);
+            }
+        }
+        var _cat=new Animal();
+        // 函数作用域外访问函数作用域内变量的函数。
+        _cat.run();
+        _cat.exist();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

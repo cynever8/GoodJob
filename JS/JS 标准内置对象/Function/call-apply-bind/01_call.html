@@ -30,6 +30,19 @@
 
 </html>
 <script>
+    // 常规使用
+    // 如果不使用call或apply b将会输出undefined
+    var a = {
+        user: "追梦子",
+        fn: function (e, ee) {
+            console.log(this.user); //追梦子
+            console.log(e + ee); //3
+        }
+    }
+    var b = a.fn;
+    b.call(a, 1, 2);
+
+
     // 使用 call 方法调用父构造函数--------------------------------------------
     /* 
         在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继承，类似于 Java 中的写法。
@@ -82,19 +95,18 @@
         }).call(animals[i], i);
     }
 
-    
+
     //使用 call 方法调用函数并且指定上下文的 'this'--------------------------
     // 在下面的例子中，当调用 greet 方法的时候，该方法的this值会绑定到 obj 对象。
-    function greet(){
+    function greet() {
         // 使用join链接类数组对象
-        var reply = [this.animal,"typically sleep between",this.sleepDuration].join(' ');
+        var reply = [this.animal, "typically sleep between", this.sleepDuration].join(' ');
         console.log(reply);
     }
     var obj = {
-        animal:'cats',sleepDuration:'12 and 18 hours'
+        animal: 'cats',
+        sleepDuration: '12 and 18 hours'
     };
 
-    greet.call(obj);// cats typically sleep between 12 and 16 hours
-
-
+    greet.call(obj); // cats typically sleep between 12 and 16 hours
 </script>
