@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    // 内层变量覆盖外层变量
+    let tmp = new Date();
+    function f(){
+        console.log('tmp',tmp);
+        if(true){
+            var tmp = "1"
+        }
+    }
+    f()
+</script>

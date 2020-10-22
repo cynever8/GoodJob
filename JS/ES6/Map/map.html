@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let arr = [
+        {
+            id: 1,
+            name: "王一丁"
+        },
+        {
+            id: 2,
+            name: "未阅读"
+        },
+    ]
+    let newArr = arr.map(val => {
+        return {
+            ids: val.id,
+            names: val.name
+        }
+    })
+    console.log("newArr", newArr)
+
+
+</script>
