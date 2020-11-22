@@ -1,0 +1,34 @@
+<!--
+ * @Description: 
+ * @Autor: Leon
+ * @Date: 2019-12-21 21:28:26
+ * @LastEditors: Leon
+ * @LastEditTime: 2019-12-21 21:46:35
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流</title>
+</head>
+<body>
+    <div style="height: 3000px;"></div>
+</body>
+</html>
+
+<script>
+    // 1. 
+    // 时间大于300 执行下一次
+    let firstTime = 0;
+    document.addEventListener("scroll",()=>{
+        let lastTime = new Date().getTime();
+        console.log("F: lastTime ", lastTime )
+        if(lastTime - firstTime > 300){
+            firstTime = lastTime; 
+            console.log(1111);
+        }
+    })
+
+</script>
