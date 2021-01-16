@@ -2,15 +2,15 @@
  * @Description: 简单的排序 
  * @Autor: Leon
  * @Date: 2019-12-07 21:34:53
- * @LastEditors: Leon
- * @LastEditTime: 2019-12-08 18:30:47
+ * @LastEditors: 王一丁
+ * @LastEditTime: 2021-01-15 11:05:50
  */
 
 /**
  * @description: 
  * 参数 1 _data: 准备排序的数组的名称
  * 参数 2 _field: 排序的主键
- * 参数 3 _asc: 1 正序排序 ; 2 倒序排序
+ * 参数 3 _asc: 1 正序排序 ; -1 倒序排序
  * @param {type} 
  * @return: 
  * @author: Leon
