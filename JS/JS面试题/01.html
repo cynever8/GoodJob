@@ -2,31 +2,47 @@
  * @Description: 
  * @Autor: Leon
  * @Date: 2020-02-08 20:01:19
- * @LastEditors  : Leon
- * @LastEditTime : 2020-02-08 20:24:33
+ * @LastEditors: 王一丁
+ * @LastEditTime: 2021-01-30 19:14:39
  -->
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
-</body>
-
+  <body></body>
 </html>
 
 <script>
-var a = {n:1};
-var b = a;
-a.x = a = {n:2};
-console.log(a)
-console.log(a.x);// undefined
-console.log(b.x);// { n: 2 }
-console.log(b);// { n: 2 }
+  var a = { n: 1 };
+  var b = a;
+  a.x = a = { n: 2 };
+  console.log(a);
+  console.log(a.x); 
+  console.log(b.x);
+  console.log(b); 
+
+//   ----------------------------------
+  function test(person) {
+    person.age = 26;
+    person = {
+      name: "yyy",
+      age: 30,
+    };
+
+    return person;
+  }
+  const p1 = {
+    name: "yck",
+    age: 25,
+  };
+  const p2 = test(p1);
+  console.log(p1); // -> ?
+  console.log(p2); // -> ?
+
+  console.log('Boolean()',Boolean(-1));
 </script>

@@ -1,0 +1,46 @@
+<!--
+ * @Date: 2021-01-30 19:15:04
+ * @LastEditors: 王一丁
+ * @LastEditTime: 2021-01-31 15:49:08
+ * @annotation: 文件名
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function foo() {
+        console.log(this.a);
+      }
+      var a = 1;
+      // foo();
+
+      const obj = {
+        a: 2,
+        foo: foo,
+      };
+      // obj.foo();
+
+      const c = new foo();
+
+      // function test() {
+      //   const c = new foo(1);
+      //   console.log("c111", c);
+      // }
+      // test();
+      // --------------------------------------
+      // function a() {
+      //   return () => {
+      //     return () => {
+      //       console.log(this);
+      //     };
+      //   };
+      // }
+      // console.log(a()()());
+    </script>
+  </body>
+</html>

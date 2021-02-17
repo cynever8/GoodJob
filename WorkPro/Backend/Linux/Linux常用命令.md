@@ -3,7 +3,7 @@
  * @Autor: Leon
  * @Date: 2020-01-07 19:17:41
  * @LastEditors: 王一丁
- * @LastEditTime: 2020-08-06 10:46:37
+ * @LastEditTime: 2021-02-09 18:37:37
  -->
 
 # 常用命令
@@ -28,7 +28,7 @@
    - find / -name mysql 这句命令的意思是在根目录下按名字查找文件夹名叫mysql的文件夹。
    - locate命令 例如：locate \*.log 这句命令的意思是查找后缀为.log的文件
 10. source /etc/profile(文件路径) 修改文件后更新文件内容
-
+11. tar -zxvf saber.tar.gz gz文件解压
 ## Nginx 
 
 1. start nginx          启动 

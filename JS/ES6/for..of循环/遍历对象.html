@@ -1,0 +1,54 @@
+<!--
+ * @Date: 2021-02-15 23:41:11
+ * @LastEditors: 王一丁
+ * @LastEditTime: 2021-02-15 23:47:33
+ * @annotation: 文件名
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  let obj = {
+    name: "wang",
+    age: 2,
+  };
+  let arr = [1, 43, 2, 31, 2, 31, 23, 1];
+
+  let arrobj = [
+    {
+      name: "wang1",
+      age: 21,
+    },
+    {
+      name: "wang",
+      age: 2,
+    },
+  ];
+
+  //   for (const iterator in obj) {
+  //     console.log("iterator", iterator);
+  //   }
+  //   for (const key in obj) {
+  //     if (Object.hasOwnProperty.call(obj, key)) {
+  //       const element = obj[key];
+  //       console.log("element", element);
+  //     }
+  //   }
+
+  //   遍历类数组
+  for (const iterator of arrobj) {
+    // console.log("iterator", iterator);
+  }
+  //   遍历字符串
+  let str = "12312312312";
+  for (const iterator of str) {
+    console.log("iterator", iterator);
+  }
+</script>
