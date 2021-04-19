@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <script type="text/javascript">
-        /**
-         * 原型继承的实现原理
-         *      __proto__===class.prototype
-         * 
-         * 原型链继承：是通过 __proto__ 和 prototype 属性共同维护形成的继承关系。
-         * 
-         */
-        function Animal(){
-            this.leg=4;
-            this.run=function(){
-                console.log("this animal can run");
-            }
-        }
-        function Cat(){
-            this.catch=function(){
-                console.log("this cat is catching mouse");
-            }
-        }
-        function FullColorCat(){
-            this.weight="5kg";
-        }
+      /**
+       * 原型继承的实现原理
+       *      __proto__===class.prototype
+       *
+       * 原型链继承：是通过 __proto__ 和 prototype 属性共同维护形成的继承关系。
+       *
+       */
+      function Animal() {
+        this.leg = 4;
+        this.run = function () {
+          console.log("this animal can run");
+        };
+      }
+      function Cat() {
+        this.catch = function () {
+          console.log("this cat is catching mouse");
+        };
+      }
+      function FullColorCat() {
+        this.weight = "5kg";
+      }
 
+      Cat.prototype = new Animal();
+      FullColorCat.prototype = new Cat();
 
-        Cat.prototype=new Animal();
-        FullColorCat.prototype=new Cat();
-        
-        var _fcc=new FullColorCat();
-        console.log("F: _fcc", _fcc)
-        /* 
+      var _fcc = new FullColorCat();
+      console.log("F: _fcc", _fcc);
+      /* 
             FullColorCat {weight: "5kg"}
                 weight: "5kg"  // 小花猫
                     __proto__: Animal
@@ -46,11 +45,12 @@
             }
         
         */
-        
-        // _fcc.__proto__.__proto__===FullColorCat.prototype.__proto__===new Cat().__proto__===Cat.prototype===new Animal();
+
+      (((_fcc.__proto__.__proto__ === FullColorCat.prototype.__proto__) ===
+        new Cat().__proto__) ===
+        Cat.prototype) ===
+        new Animal();
     </script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body></body>
 </html>
