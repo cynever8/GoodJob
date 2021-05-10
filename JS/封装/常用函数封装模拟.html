@@ -1,486 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
-</body>
-
+  <body></body>
 </html>
 
 <script>
-    // 原生封装和数组排序数组去重
+  // 原生封装和数组排序数组去重
 
-    // 1、 bind原理封装
+  // 1、 bind原理封装
 
-    Function.prototype.bindAlley = function () {
+  Function.prototype.bindAlley = function () {
+    //获取调用bind的函数
+    var fn = this;
+    var _this = arguments[0];
+    var arr = [];
+    for (var i = 1; i < arguments.length; i++) {
+      arr.push(arguments[i]);
+    }
+    return function () {
+      var newArr = [];
+      for (var i = 0; i < arguments.length; i++) {
+        newArr.push(arguments[i]);
+      }
+      fn.apply(_this, arr.concat(newArr));
+    };
+  };
 
-        //获取调用bind的函数
+  // 2、 call apply原理封装
 
-        var fn = this;
+  Function.prototype.callAlley = function () {
+    var fn = this;
+    if (typeof fn != "function") {
+      throw new Error(fn + "is not function");
+    }
+    //obj就是this的指向
+    var obj = arguments[0];
+    var arr = [];
+    obj.callback = fn;
+    for (var i = 1; i < arguments.length; i++) {
+      arr.push(arguments[i]);
+    }
+    obj.callback(...arr);
+    delete obj.callback;
+  };
 
-        var _this = arguments[0];
+  Function.prototype.applyAlley = function () {
+    var fn = this;
+    if (typeof fn != "function") {
+      throw new Error(fn + "is not function");
+    }
+    //obj就是this的指向
+    var obj = arguments[0];
+    var arr = arguments[1] || [];
+    obj.callback = fn;
+    obj.callback(arr);
+    delete obj.callback;
+  };
 
-        var arr = [];
+  // 3、 map原理封装
 
+  Array.prototype.mapAlley = function (callback) {
+    if (typeof callback != "function") {
+      throw new Error(callback + "is not function");
+    }
+    //获取使用map这个方法的数组
+    var arr = this;
+    //获取this的指向 如果第二个参数传递了callback这个函数this的指向就指向第二个参数 如果没有传递则指向window
+    var _this = arguments[1] || window;
+    //es5中都不会对原数组做操作因此需要返回一个新的数组
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      //将callback的返回值添加新的数组中
+      newArr.push(callback.call(_this, arr[i], i, arr));
+    }
+    return newArr;
+  };
 
-        for (var i = 1; i < arguments.length; i++) {
-
-            arr.push(arguments[i]);
-
-        }
-
-
-        return function () {
-
-            var newArr = [];
-
-
-            for (var i = 0; i < arguments.length; i++) {
-
-                newArr.push(arguments[i]);
-
-            }
-
-            fn.apply(_this, arr.concat(newArr));
-
-        }
-
-
+  // 4、 filter原理封装
+  Array.prototype.filterAlley = function (callback) {
+    if (typeof callback != "function") {
+      throw new Error(callback + "is not function");
     }
 
-    // 2、 call apply原理封装
+    var arr = this;
 
-    Function.prototype.callAlley = function () {
+    var _this = arguments[1] || window;
 
-        var fn = this;
+    var newArr = [];
 
-
-        if (typeof fn != 'function') {
-
-            throw new Error(fn + 'is not function')
-
-        }
-
-
-        //obj就是this的指向
-
-        var obj = arguments[0];
-
-        var arr = [];
-
-        obj.callback = fn;
-
-        for (var i = 1; i < arguments.length; i++) {
-
-            arr.push(arguments[i]);
-
-        }
-
-        obj.callback(...arr)
-
-        delete obj.callback;
-
-
+    for (var i = 0; i < arr.length; i++) {
+      if (callback.call(_this, arr[i], i, arr)) {
+        newArr.push(arr[i]);
+      }
     }
 
+    return newArr;
+  };
 
+  // 5、 forEach原理封装
 
-    Function.prototype.applyAlley = function () {
-
-        var fn = this;
-
-        if (typeof fn != 'function') {
-
-            throw new Error(fn + 'is not function')
-
-        }
-
-        //obj就是this的指向
-
-        var obj = arguments[0];
-
-        var arr = arguments[1] || [];
-
-        obj.callback = fn;
-
-        obj.callback(arr);
-
-        delete obj.callback;
-
+  Array.prototype.forEachAlley = function (callback) {
+    if (typeof callback != "function") {
+      throw new Error(callback + "is not function");
     }
 
-    // 3、 map原理封装
+    var arr = this;
 
-    Array.prototype.mapAlley = function (callback) {
+    var _this = arguments[1] || window;
 
+    for (var i = 0; i < arr.length; i++) {
+      callback.call(_this, arr[i], i, arr);
+    }
+  };
 
-        if (typeof callback != 'function') {
+  // 6、 reduce原理封装及使用
 
-            throw new Error(callback + 'is not function');
-
-        }
-
-        //获取使用map这个方法的数组
-
-        var arr = this;
-
-        //获取this的指向 如果第二个参数传递了callback这个函数this的指向就指向第二个参数 如果没有传递则指向window
-
-        var _this = arguments[1] || window;
-
-        //es5中都不会对原数组做操作因此需要返回一个新的数组
-
-        var newArr = [];
-
-
-        for (var i = 0; i < arr.length; i++) {
-
-            //将callback的返回值添加新的数组中
-
-            newArr.push(callback.call(_this, arr[i], i, arr));
-
-        }
-
-
-        return newArr;
-
+  Array.prototype.reduceAlley = function (callback, initValue) {
+    if (typeof callback != "function") {
+      throw new Error(callback + "is not function");
     }
 
-    // 4、 filter原理封装
+    var arr = this;
 
-    Array.prototype.filterAlley = function (callback) {
+    //上一次的结果
 
-        if (typeof callback != 'function') {
+    var prev;
 
-            throw new Error(callback + 'is not function');
+    //判断是否传递了初始值
 
-        }
+    var isInitValue = false;
 
+    //如果初始值传递了 则将状态改为true 将初始值赋值prev
 
-        var arr = this;
+    if (initValue) {
+      isInitValue = true;
 
-        var _this = arguments[1] || window;
-
-        var newArr = [];
-
-
-        for (var i = 0; i < arr.length; i++) {
-
-            if (callback.call(_this, arr[i], i, arr)) {
-
-                newArr.push(arr[i]);
-
-            }
-
-        }
-
-
-        return newArr;
-
+      prev = initValue;
     }
 
-    // 5、 forEach原理封装
+    //遍历
 
-    Array.prototype.forEachAlley = function (callback) {
+    for (var i = 0; i < arr.length; i++) {
+      //初始值是否存在 如果存在则将prev传递到callback当做，如果不存在则将数组中的第一个值赋值给prev
 
-        if (typeof callback != 'function') {
+      if (isInitValue) {
+        prev = callback(prev, arr[i], i, arr);
+      } else {
+        prev = arr[i];
 
-            throw new Error(callback + 'is not function');
-
-        }
-
-
-        var arr = this;
-
-        var _this = arguments[1] || window;
-
-        for (var i = 0; i < arr.length; i++) {
-
-            callback.call(_this, arr[i], i, arr);
-
-        }
-
-
+        isInitValue = true;
+      }
     }
 
-    // 6、 reduce原理封装及使用
+    return prev;
+  };
 
-    Array.prototype.reduceAlley = function (callback, initValue) {
+  //查看数组中的最大值
+  var arr = [
+    [1, 2, 3],
+    [4, 5, 6, [7, 8, [9, 10]]],
+  ];
+  var n = arr.reduce(function (prev, curr, index, array) {
+    return Math.max(prev, curr);
+  });
 
-        if (typeof callback != 'function') {
+  //实现扁平化数组
 
-            throw new Error(callback + 'is not function');
+  function mapArr(arr) {
+    return arr.reduce(function (prev, curr) {
+      return prev.concat(Array.isArray(curr) ? mapArr(curr) : curr);
+    }, []);
+  }
 
-        }
+  //获取url地址中的参数
 
-        var arr = this;
+  var url = "http://www.baidu.com?name=alley&age=19";
 
-        //上一次的结果
+  var newUrl = url.slice(url.indexOf("?") + 1);
 
-        var prev;
+  var obj = newUrl.split("&").reduce(function (prev, curr) {
+    var key = curr.split("=")[0];
 
-        //判断是否传递了初始值
+    var val = curr.split("=")[1];
 
-        var isInitValue = false;
+    prev[key] = val;
 
+    return prev;
+  }, {});
 
-        //如果初始值传递了 则将状态改为true 将初始值赋值prev
+  //计算字符串中字符出现的个数
 
-        if (initValue) {
+  var str = "aabbccdd";
 
-            isInitValue = true;
-
-            prev = initValue;
-
-        }
-
-
-
-        //遍历
-
-        for (var i = 0; i < arr.length; i++) {
-
-            //初始值是否存在 如果存在则将prev传递到callback当做，如果不存在则将数组中的第一个值赋值给prev
-
-            if (isInitValue) {
-
-                prev = callback(prev, arr[i], i, arr);
-
-            } else {
-
-                prev = arr[i];
-
-                isInitValue = true;
-
-            }
-
-        }
-
-        return prev;
-
+  var obj = str.split("").reduce(function (prev, curr) {
+    if (prev[curr]) {
+      prev[curr]++;
+    } else {
+      prev[curr] = 1;
     }
 
+    return prev;
+  }, {});
 
-    //查看数组中的最大值
-    var arr = [
-        [1, 2, 3],
-        [4, 5, 6, [7, 8, [9, 10]]]
-    ];
-    var n = arr.reduce(function (prev, curr, index, array) {
+  // 7、 数组去重
 
-        return Math.max(prev, curr)
+  function quchong3(arr) {
+    var array = [];
 
-    })
+    for (var i = 0; i < arr.length; i++) {
+      array.push(arr[i]);
 
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+          arr.splice(j, 1);
 
-    //实现扁平化数组
-
-
-
-
-    function mapArr(arr) {
-
-        return arr.reduce(function (prev, curr) {
-
-            return prev.concat(Array.isArray(curr) ? mapArr(curr) : curr);
-
-        }, [])
-
+          j--;
+        }
+      }
     }
 
+    return array;
+  }
 
-    //获取url地址中的参数
+  // 排序后比较是否和左值相同
 
-    var url = "http://www.baidu.com?name=alley&age=19";
+  function quchong1(arr) {
+    var array = [];
 
-    var newUrl = url.slice(url.indexOf("?") + 1);
+    arr.sort((a, b) => {
+      return a - b;
+    });
 
+    var zwarr = [arr[0]];
 
-    var obj = newUrl.split("&").reduce(function (prev, curr) {
-
-        var key = curr.split("=")[0];
-
-        var val = curr.split("=")[1];
-
-        prev[key] = val;
-
-        return prev;
-
-    }, {})
-
-
-    //计算字符串中字符出现的个数
-
-    var str = "aabbccdd";
-
-    var obj = str.split("").reduce(function (prev, curr) {
-
-        if (prev[curr]) {
-
-            prev[curr]++
-
-        } else {
-
-            prev[curr] = 1;
-
-        }
-
-        return prev;
-
-    }, {})
-
-    // 7、 数组去重
-
-    function quchong3(arr) {
-
-        var array = [];
-
-        for (var i = 0; i < arr.length; i++) {
-
-            array.push(arr[i])
-
-            for (var j = i + 1; j < arr.length; j++) {
-
-                if (arr[i] == arr[j]) {
-
-                    arr.splice(j, 1);
-
-                    j--;
-
-                }
-
-            }
-
-        }
-
-        return array
-
-
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i] != zwarr[zwarr.length - 1]) {
+        zwarr.push(arr[i]);
+      }
     }
 
-    // 排序后比较是否和左值相同
+    return zwarr;
+  }
 
-    function quchong1(arr) {
+  console.log(quchong1(arr));
 
-        var array = []
+  // 对象键名唯一性
 
-        arr.sort((a, b) => {
+  function quchong2(arr) {
+    var obj = {};
 
-            return a - b
+    var array = [];
 
-        })
-
-        var zwarr = [arr[0]];
-
-        for (var i = 1; i < arr.length; i++) {
-
-            if (arr[i] != zwarr[zwarr.length - 1]) {
-
-                zwarr.push(arr[i])
-
-            }
-
-        }
-
-        return zwarr
-
+    for (var i = 0; i < arr.length; i++) {
+      obj[arr[i]] = arr[i];
     }
 
-    console.log(quchong1(arr))
-
-
-
-    // 对象键名唯一性
-
-    function quchong2(arr) {
-
-        var obj = {};
-
-        var array = []
-
-        for (var i = 0; i < arr.length; i++) {
-
-            obj[arr[i]] = arr[i]
-
-        }
-
-        for (var key in obj) {
-
-            array.push(obj[key])
-
-        }
-
-        return array
-
+    for (var key in obj) {
+      array.push(obj[key]);
     }
 
-    // 8、 数组排序
+    return array;
+  }
 
-    function mySort1(arr) {
+  // 8、 数组排序
 
-        for (var i = 0; i < arr.length; i++) {
+  function mySort1(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[i] > arr[j]) {
+          var temp = arr[i];
 
-            for (var j = i + 1; j < arr.length; j++) {
+          arr[i] = arr[j];
 
-                if (arr[i] > arr[j]) {
-
-                    var temp = arr[i];
-
-                    arr[i] = arr[j];
-
-                    arr[j] = temp;
-
-                }
-
-            }
-
+          arr[j] = temp;
         }
-
-        return arr;
-
+      }
     }
 
+    return arr;
+  }
 
-    function mySort2(arr) {
+  function mySort2(arr) {
+    var min;
 
-        var min
+    for (var i = 0; i < arr.length; i++) {
+      min = i;
 
-        for (var i = 0; i < arr.length; i++) {
-
-            min = i;
-
-            for (var j = i + 1; j < arr.length; j++) {
-
-                if (arr[min] > arr[j]) {
-
-                    min = j;
-
-                }
-
-            }
-
-            if (min != i) {
-
-                var temp = arr[i];
-
-                arr[i] = arr[min];
-
-                arr[min] = temp
-
-            }
-
-
-
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[min] > arr[j]) {
+          min = j;
         }
+      }
 
-        return arr
+      if (min != i) {
+        var temp = arr[i];
 
+        arr[i] = arr[min];
+
+        arr[min] = temp;
+      }
     }
+
+    return arr;
+  }
 </script>
